@@ -9,7 +9,7 @@ def get_url_html(url, element, name):
     print("Scraped " + url + ".")
     
 def write_to_file(tags):
-    f = open("scraped_data.txt","w+")
+    f = open("scraped_data.txt","a+")
     for tag in tags:
         t = str(tag.text.encode("utf-8")).lstrip('0123456789.- ')
         f.write(t + "\n")
