@@ -16,13 +16,11 @@ def write_to_file(tags):
     f.close()
 
 def main():
-    parser = argparse.ArgumentParser()
-    requiredargs = parser.add_argument_group('required arguments')
-    requiredargs.add_argument("-u", "--url", help="the url to request data from", required=True)
-    requiredargs.add_argument("-e", "--element", help="the HTML element to find all occurences for", required=True)
-    parser.add_argument("-n", "--name", help="the name of the element to scrape data from")
-    args = parser.parse_args()
-    get_url_html(args.url, args.element, args.name)
+    f = open("input.txt", "r")
+    for x in f:
+        args = x.split(",", 3)
+        get_url_html(args[0], args[1], args[2])
+    f.close()
 
 if __name__ == '__main__':
     main()
