@@ -1,6 +1,6 @@
 # simple-web-scraper
 A simple web scraper.
 
-Usage:
+To see usage:
 
-python webscraper.py "url" "classname"
+python webscraper.py -h
