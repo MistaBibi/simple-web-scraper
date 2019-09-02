@@ -6,13 +6,14 @@ def get_url_html(url, name):
     print("Attempting to GET request" + url + "...")
     response = requests.get(url)
     scraped = BeautifulSoup(response.text, "html.parser")
-    write_to_file(scraped.find_all("div", {"class": name}))
+    write_to_file(scraped.find_all("h2", {"class": name}))
     print("Scraped" + url + ".")
     
 def write_to_file(tags):
     f = open("scraped_data.txt","w+")
     for tag in tags:
-       f.write(str(tag.text.encode("utf-8")) + "\n")
+        t = str(tag.text.encode("utf-8")).lstrip('0123456789.- ')
+        f.write(t + "\n")
     f.close()
 
 def main():
