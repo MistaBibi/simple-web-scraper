@@ -19,6 +19,7 @@ def main():
     f = open("input.txt", "r")
     for x in f:
         args = x.split(",", 3)
+        print(args)
         get_url_html(args[0], args[1], args[2])
     f.close()
 
