@@ -24,7 +24,7 @@ def main():
         outputfile = open("img_urls.txt","a+")
         for searchtext in inputfile:
             print("Extracting the first image result url for " + searchtext + "...")
-            outputfile.write(get_img_url(searchtext) + "\n")
+            outputfile.write("\"" + get_img_url(searchtext) + "\",\n")
     except Exception as e:
         print("Extraction failed.", e)
     finally:
