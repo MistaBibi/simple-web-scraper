@@ -10,7 +10,7 @@ import sys
 os.environ["PATH"] += os.pathsep + os.getcwd()
 
 def get_img_url(searchtext):
-    url = "https://www.google.co.in/search?q="+searchtext+"&source=lnms&tbm=isch"
+    url = "https://www.google.com/search?q="+searchtext+"&tbm=isch&tbs=isz:i"
     driver = webdriver.Firefox()
     driver.get(url)
     img = driver.find_element_by_xpath('//div[contains(@class,"rg_meta")]')
@@ -25,6 +25,7 @@ def main():
         for searchtext in inputfile:
             print("Extracting the first image result url for " + searchtext + "...")
             outputfile.write("\"" + get_img_url(searchtext) + "\",\n")
+            print("Success.")
     except Exception as e:
         print("Extraction failed.", e)
     finally:
