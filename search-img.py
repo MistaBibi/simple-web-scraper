@@ -10,11 +10,11 @@ import sys
 os.environ["PATH"] += os.pathsep + os.getcwd()
 
 def get_img_url(searchtext):
-    url = "https://www.google.co.jp/search?q="+searchtext+"&source=lnms&tbm=isch"
+    url = "https://www.google.com/search?q="+searchtext+"&tbm=isch&tbs=isz:m,iar:s"
     driver = webdriver.Firefox()
     driver.get(url)
-    img = driver.find_element_by_xpath('//div[contains(@class,"rg_meta")]')
-    img_url = json.loads(img.get_attribute('innerHTML'))["ou"]
+    imgs = driver.find_elements_by_xpath('//div[contains(@class,"rg_meta")]')
+    img_url = json.loads(imgs[len(imgs)-1].get_attribute('innerHTML'))["ou"]
     driver.quit()
     return img_url
 
