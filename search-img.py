@@ -10,7 +10,7 @@ import sys
 os.environ["PATH"] += os.pathsep + os.getcwd()
 
 def get_img_url(searchtext):
-    url = "https://www.google.com/search?q="+searchtext+"&source=lnms&tbm=isch"
+    url = "https://www.google.co.jp/search?q="+searchtext+"&source=lnms&tbm=isch"
     driver = webdriver.Firefox()
     driver.get(url)
     img = driver.find_element_by_xpath('//div[contains(@class,"rg_meta")]')
