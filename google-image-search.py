@@ -10,11 +10,26 @@ import sys
 os.environ["PATH"] += os.pathsep + os.getcwd()
 
 def get_img_url(searchtext):
-    url = "https://www.google.com/search?q="+searchtext+"&tbm=isch&tbs=isz:m,iar:s"
+    # Google search query
+    # &tbm=isch - image search
+    # &tbs=isz:m - image size is medium
+    # iar:s - image aspect ratio is square
+    # sur:fc - 
+    url = "https://www.google.com/search?q="+searchtext+"&tbm=isch&tbs=isz:m,iar:s,sur:fc"
+
+    # initiate MF web driver
     driver = webdriver.Firefox()
+
+    # using driver, retrieve webpage based on url
     driver.get(url)
-    imgs = driver.find_elements_by_xpath('//div[contains(@class,"rg_meta")]')
-    img_url = json.loads(imgs[len(imgs)-1].get_attribute('innerHTML'))["ou"]
+
+    # retrieve the first image of the results
+    img = driver.find_element_by_xpath('//*[@id="rg_s"]/div[1]/div[1]')
+
+    # if found, retrieve the image source
+    img_url = ""
+    if img:
+        img_url = json.loads(img.get_attribute('innerHTML'))["ou"]
     driver.quit()
     return img_url
 
