@@ -15,7 +15,7 @@ def get_img_url(searchtext):
     # &tbs=isz:m - image size is medium
     # iar:s - image aspect ratio is square
     # sur:fc - 
-    url = "https://www.google.com/search?q="+searchtext+"&tbm=isch&tbs=isz:m,iar:s,sur:fc"
+    url = "https://www.google.com/search?q="+searchtext+"&tbm=isch&tbs=sur:fc"
 
     # initiate MF web driver
     driver = webdriver.Firefox()
