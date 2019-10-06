@@ -24,12 +24,18 @@ def get_img_url(searchtext):
     driver.get(url)
 
     # retrieve the first image of the results
-    img = driver.find_element_by_xpath('//*[@id="rg_s"]/div[1]/div[1]')
-
+    img1 = driver.find_element_by_xpath('//*[@id="rg_s"]/div[1]/div[1]')
+    img2 = driver.find_element_by_xpath('//*[@id="rg_s"]/div[2]/div[1]')
+    img3 = driver.find_element_by_xpath('//*[@id="rg_s"]/div[3]/div[1]')
     # if found, retrieve the image source
-    img_url = ""
-    if img:
-        img_url = json.loads(img.get_attribute('innerHTML'))["ou"]
+    img_url = []
+    if img1:
+        img_url.append(json.loads(img1.get_attribute('innerHTML'))["ou"])
+    if img2:
+        img_url.append(json.loads(img2.get_attribute('innerHTML'))["ou"])
+    if img3:
+        img_url.append(json.loads(img3.get_attribute('innerHTML'))["ou"])
+    print(img_url)
     driver.quit()
     return img_url
 
@@ -39,7 +45,12 @@ def main():
         outputfile = open("google_img_urls.txt","a+")
         for searchtext in inputfile:
             print("Extracting the first image result url for " + searchtext + "...")
-            outputfile.write("\"" + get_img_url(searchtext) + "\",\n")
+            outputList = get_img_url(searchtext)
+            outputString = "["
+            for i in outputList:
+                outputString = outputString + "\""+ i + "\",\n"
+            outputString = outputString + "]\n"
+            outputfile.write(outputString)
             print("Success.")
     except Exception as e:
         print("Extraction failed.", e)
