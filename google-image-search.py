@@ -36,7 +36,7 @@ def get_img_url(searchtext):
 def main():
     try:
         inputfile = open("scraped_data.txt", "r")
-        outputfile = open("img_urls.txt","a+")
+        outputfile = open("google_img_urls.txt","a+")
         for searchtext in inputfile:
             print("Extracting the first image result url for " + searchtext + "...")
             outputfile.write("\"" + get_img_url(searchtext) + "\",\n")
